@@ -4,9 +4,9 @@
 #include <LiquidCrystal_I2C.h>
 
 // WiFi credentials
-const char* ssid = "JDP 2G";
-const char* password = "jd8655461969";
-const char* serverAddress = "192.168.29.180:8080";
+const char* ssid = "";
+const char* password = "";
+const char* serverAddress = "PUT MAC ADDRESS HERE";
 
 // Pin definitions
 const int PLAY_PAUSE_BTN = 15;
