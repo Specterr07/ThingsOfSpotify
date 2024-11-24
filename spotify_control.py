@@ -19,8 +19,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Set up Spotify credentials
-os.environ["SPOTIPY_CLIENT_ID"] = "bbdd8f0332c142c887060b97b346e739"
-os.environ["SPOTIPY_CLIENT_SECRET"] = "ff14db778b8046879b81e2f97023d01e"
+os.environ["SPOTIPY_CLIENT_ID"] = ""
+os.environ["SPOTIPY_CLIENT_SECRET"] = ""
 os.environ["SPOTIPY_REDIRECT_URI"] = "http://localhost:8080/callback"
 
 # Enhanced scope for more features
@@ -284,118 +284,4 @@ if __name__ == '__main__':
 
 
 
-
-
-
-
-
-
-
-
-
-# import spotipy
-# from spotipy.oauth2 import SpotifyOAuth
-# from flask import Flask, request, redirect
-# import os
-
-# # Set up Spotify credentials
-# os.environ["SPOTIPY_CLIENT_ID"] = "bbdd8f0332c142c887060b97b346e739"
-# os.environ["SPOTIPY_CLIENT_SECRET"] = "ff14db778b8046879b81e2f97023d01e"
-# os.environ["SPOTIPY_REDIRECT_URI"] = "http://localhost:8080/callback"
-
-# # Add volume control to scope
-# scope = "user-modify-playback-state user-read-playback-state"
-# sp_oauth = SpotifyOAuth(scope=scope)
-
-# app = Flask(__name__)
-# sp = None  # Spotify object will be initialized after auth
-
-# @app.route('/')
-# def home():
-#     token_info = sp_oauth.get_cached_token()
-#     if not token_info:
-#         auth_url = sp_oauth.get_authorize_url()
-#         return redirect(auth_url)
-#     else:
-#         global sp
-#         sp = spotipy.Spotify(auth_manager=sp_oauth)
-#         return "Spotify Authorization Complete. Use control endpoints."
-
-# @app.route('/callback')
-# def callback():
-#     code = request.args.get("code")
-#     token_info = sp_oauth.get_access_token(code)
-#     global sp
-#     sp = spotipy.Spotify(auth=token_info['access_token'])
-#     return redirect('/')
-
-# @app.route('/spotify/play', methods=['GET'])
-# def play():
-#     try:
-#         sp.start_playback()
-#         return "Playing music", 200
-#     except Exception as e:
-#         return str(e), 500
-
-# @app.route('/spotify/pause', methods=['GET'])
-# def pause():
-#     try:
-#         sp.pause_playback()
-#         return "Paused music", 200
-#     except Exception as e:
-#         return str(e), 500
-
-# @app.route('/spotify/next', methods=['GET'])
-# def next_track():
-#     try:
-#         sp.next_track()
-#         return "Skipped to next track", 200
-#     except Exception as e:
-#         return str(e), 500
-
-# @app.route('/spotify/previous', methods=['GET'])
-# def previous_track():
-#     try:
-#         sp.previous_track()
-#         return "Went to previous track", 200
-#     except Exception as e:
-#         return str(e), 500
-
-# @app.route('/spotify/volume/<int:volume>', methods=['GET'])
-# def set_volume(volume):
-#     try:
-#         # Ensure volume is between 0 and 100
-#         volume = max(0, min(100, volume))
-#         sp.volume(volume)
-#         return f"Volume set to {volume}%", 200
-#     except Exception as e:
-#         return str(e), 500
-
-# @app.route('/spotify/seek/<int:position>', methods=['GET'])
-# def seek_position(position):
-#     try:
-#         # Position is in milliseconds
-#         sp.seek_track(position)
-#         return f"Seeked to position {position}ms", 200
-#     except Exception as e:
-#         return str(e), 500
-
-# @app.route('/spotify/status', methods=['GET'])
-# def get_status():
-#     try:
-#         current_playback = sp.current_playback()
-#         if current_playback:
-#             return {
-#                 'is_playing': current_playback['is_playing'],
-#                 'volume': current_playback['device']['volume_percent'],
-#                 'track': current_playback['item']['name'],
-#                 'artist': current_playback['item']['artists'][0]['name'],
-#                 'duration_ms': current_playback['item']['duration_ms']  # Added duration
-#             }, 200
-#         return "No active playback", 204
-#     except Exception as e:
-#         return str(e), 500
-
-# if __name__ == '__main__':
-#     app.run(host='0.0.0.0', port=8080)
 
