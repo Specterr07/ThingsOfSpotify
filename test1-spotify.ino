@@ -2,8 +2,8 @@
 #include <HTTPClient.h>
 #include <LiquidCrystal_PCF8574.h>
 
-const char* ssid = "JDP 2G";
-const char* password = "jd8655461969";
+const char* ssid = "";
+const char* password = "";
 
 const int buttonPin = 15;
 bool buttonState = HIGH;
@@ -52,7 +52,7 @@ void loop() {
 void sendSpotifyCommand(String command) {
   if (WiFi.status() == WL_CONNECTED) {
     HTTPClient http;
-    String url = "http://192.168.29.8:8080/spotify/" + command;
+    String url = "http://PUT MAC ADDRESS HERE/spotify/" + command;
     
     Serial.print("Sending command to: ");
     Serial.println(url);
